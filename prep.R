@@ -2,8 +2,10 @@ library(absmapsdata)
 library(Census2016.DataPack)
 library(data.table)
 library(tidyverse)
+library(rmapshaper)
 
 school_sa4 <- SA4__Age_MaxSchoolingCompleted_Sex %>%
+  filter(!is.na(MaxSchoolingCompleted)) %>%
   group_by(SA4_NAME16, Age, MaxSchoolingCompleted) %>%
   summarise(adults = sum(adults))
 
@@ -14,12 +16,16 @@ school_sa4_sum <- school_sa4 %>%
                                                 "Year 9",
                                                 "Year 10")]) / 
               sum(adults[!is.na(MaxSchoolingCompleted)])) %>%
-  left_join(sa42016, by = c("SA4_NAME16" = "sa4_name_2016"))
+  ungroup() 
+
+school_sa4_map <- sa42016 %>%
+  ms_simplify(keep = 0.2) %>%
+  left_join(school_sa4_sum, by = c("sa4_name_2016" = "SA4_NAME16"))
 
 
 
 save(school_sa4, file = "shiny-map/data/school_sa4.rda")
-save(school_sa4_sum, file = "shiny-map/data/school_sa4_sum.rda")
+save(school_sa4_map, file = "shiny-map/data/school_sa4_map.rda")
 
   
 

@@ -4,7 +4,9 @@ library(shiny)
 library(leaflet)
 library(ggvis)
 library(sf)
+library(dplyr)
+library(RColorBrewer)
 
-load("school_sa4.rda")
-load("school_sa4_sum.rda")
+load("data/school_sa4.rda")
+load("data/school_sa4_map.rda")
 
