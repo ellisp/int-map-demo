@@ -1,3 +1,7 @@
+# preparation for the Shiny app to draw an interactive web map and barchart
+#
+# Peter Elis 30 April 2019
+
 library(absmapsdata)
 library(Census2016.DataPack)
 library(data.table)

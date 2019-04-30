@@ -1,11 +1,9 @@
 
-# Define UI for application that draws a histogram
+# Define UI for choropleth map / barchart app
 shinyUI(fluidPage(
   
-  # Application title
   titlePanel("Interactive map demo - Australian Census 2016"),
   
-  # Sidebar with a slider input for number of bins 
   fluidRow(
     column(6,
            h3("Proportion of adults with year 10 or lower education"),
